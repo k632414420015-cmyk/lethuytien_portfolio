@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khóa Học Ngữ Pháp Tiếng Anh Lớp 8 | Cô Lê Thủy Tiên (FTU)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f6ff',
+                            100: '#e0edff',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        emeraldCustom: {
+                            50: '#ecfdf5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+                        'card': '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
+                        'hover': '0 20px 35px -10px rgba(37, 99, 235, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .pulse-soft {
+            animation: pulse-animation 2s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-200/60 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emeraldCustom-500 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                    LT
+                </div>
+                <div>
+                    <span class="text-lg font-bold text-slate-900 block leading-tight">Cô Lê Thủy Tiên</span>
+                    <span class="text-xs font-medium text-brand-600 tracking-wide uppercase">English Teacher • FTU</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                <a href="#about" class="hover:text-brand-600 transition-colors">Giới thiệu</a>
+                <a href="#course" class="hover:text-brand-600 transition-colors">Khóa học</a>
+                <a href="#schedule" class="hover:text-brand-600 transition-colors">Lịch & Học phí</a>
+                <a href="#rules" class="hover:text-brand-600 transition-colors">Cam kết</a>
+                <a href="#contact" class="hover:text-brand-600 transition-colors">Liên hệ</a>
+            </nav>
+
+            <!-- Quick Action CTA -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="tel:0777234733" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-700 text-sm font-semibold hover:bg-slate-100 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-phone text-emeraldCustom-600"></i>
+                    0777 234 733
+                </a>
+                <button onclick="openModal()" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold shadow-md hover:shadow-brand-500/25 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Đăng Ký Học
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-3 shadow-lg">
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-700 hover:text-brand-600">Giới thiệu giáo viên</a>
+            <a href="#course" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-700 hover:text-brand-600">Mục tiêu & Nội dung</a>
+            <a href="#schedule" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-700 hover:text-brand-600">Thời gian & Học phí</a>
+            <a href="#rules" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-700 hover:text-brand-600">Nguyên tắc lớp học</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-700 hover:text-brand-600">Thông tin liên hệ</a>
+            <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <a href="tel:0777234733" class="w-full text-center py-2.5 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm">
+                    <i class="fa-solid fa-phone text-emeraldCustom-600 mr-2"></i> Gọi ngay: 0777 234 733
+                </a>
+                <button onclick="openModal(); toggleMobileMenu();" class="w-full text-center py-2.5 rounded-xl bg-brand-600 text-white font-semibold text-sm shadow-md">
+                    Đăng Ký Tham Gia Ngay
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="pt-32 pb-16 lg:pt-40 lg:pb-24 relative overflow-hidden bg-gradient-to-b from-brand-50/50 via-white to-slate-50">
+        <!-- Background decorative blobs -->
+        <div class="absolute top-12 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-tr from-brand-100/40 to-emeraldCustom-50/40 blur-3xl -z-10 rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    
+                    <!-- Free Month Badge -->
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-emeraldCustom-50 border border-emeraldCustom-500/30 text-emeraldCustom-700 font-bold text-xs sm:text-sm shadow-sm pulse-soft">
+                        <span class="flex h-2.5 w-2.5 relative">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emeraldCustom-500 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emeraldCustom-600"></span>
+                        </span>
+                        <i class="fa-solid fa-gift text-emeraldCustom-600"></i>
+                        <span>ĐẶC BIỆT: MIỄN PHÍ HOÀN TOÀN THÁNG 7/2025</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        KHÓA HỌC NGỮ PHÁP <br class="hidden sm:inline">
+                        <span class="gradient-text">TIẾNG ANH LỚP 8</span> (2025)
+                    </h1>
+
+                    <!-- Subtitle / Welcome message -->
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Kính gửi các cô chú, bố mẹ cùng các em học sinh lớp 8! Lớp học được thiết kế nhằm giúp các em củng cố vững chắc nền tảng ngữ pháp, chuẩn bị tâm thế tự tin nhất cho năm học mới 2025 – 2026.
+                    </p>
+
+                    <!-- Quick Stats Badges Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 max-w-xl mx-auto lg:mx-0">
+                        <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm text-center hover:border-brand-500/50 transition-all">
+                            <div class="text-xs text-slate-500 font-medium">IELTS</div>
+                            <div class="text-xl font-black text-brand-600">7.5</div>
+                            <div class="text-[10px] text-slate-400 font-semibold">(Nghe & Nói 8.0)</div>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm text-center hover:border-brand-500/50 transition-all">
+                            <div class="text-xs text-slate-500 font-medium">Thi THPT QG</div>
+                            <div class="text-xl font-black text-emeraldCustom-600">9.4</div>
+                            <div class="text-[10px] text-slate-400 font-semibold">Môn Tiếng Anh</div>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm text-center hover:border-brand-500/50 transition-all">
+                            <div class="text-xs text-slate-500 font-medium">Học Bạ THPT</div>
+                            <div class="text-xl font-black text-indigo-600">9.2</div>
+                            <div class="text-[10px] text-slate-400 font-semibold">Trung bình 6 kỳ</div>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm text-center hover:border-brand-500/50 transition-all">
+                            <div class="text-xs text-slate-500 font-medium">Chứng Chỉ</div>
+                            <div class="text-xl font-black text-amber-600">TESOL</div>
+                            <div class="text-[10px] text-slate-400 font-semibold">Chuẩn Quốc Tế</div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <button onclick="openModal()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-bold text-base shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3 group">
+                            <span>Đăng Ký Cho Con Tham Gia</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        
+                        <a href="https://zalo.me/0777234733" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white border border-slate-200 hover:border-emeraldCustom-500 text-slate-700 hover:text-emeraldCustom-600 font-bold text-base shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2.5">
+                            <i class="fa-solid fa-comment-dots text-emeraldCustom-500 text-lg"></i>
+                            <span>Nhắn Tin Zalo Trực Tiếp</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust indicators -->
+                    <div class="pt-2 flex items-center justify-center lg:justify-start gap-6 text-xs text-slate-500 font-medium">
+                        <span class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emeraldCustom-500"></i> Lớp Học Offline Thanh Trì
+                        </span>
+                        <span class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emeraldCustom-500"></i> Sĩ số đảm bảo chất lượng
+                        </span>
+                    </div>
+
+                </div>
+
+                <!-- Hero Right Image / Teacher Highlight Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        
+                        <!-- Glowing backdrop -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-emeraldCustom-500 rounded-3xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                        
+                        <div class="relative bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-100">
+                            
+                            <!-- Avatar Illustration Placeholder / Badge -->
+                            <div class="flex items-center gap-4 mb-6 pb-6 border-b border-slate-100">
+                                <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-emeraldCustom-500 p-1 flex-shrink-0 shadow-md">
+                                    <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-brand-700 font-black text-2xl">
+                                        LTT
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="inline-block px-2.5 py-0.5 rounded-md bg-brand-50 text-brand-700 font-semibold text-xs mb-1">
+                                        Trực tiếp giảng dạy
+                                    </div>
+                                    <h3 class="text-xl font-extrabold text-slate-900">Cô Lê Thủy Tiên</h3>
+                                    <p class="text-sm text-slate-500 font-medium">Sinh viên Đại học Ngoại thương (FTU)</p>
+                                </div>
+                            </div>
+
+                            <!-- Highlights timeline summary -->
+                            <div class="space-y-4 text-sm">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-emeraldCustom-50 text-emeraldCustom-600 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+                                        <i class="fa-solid fa-graduation-cap"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-slate-900">Chứng chỉ Quốc tế TESOL</div>
+                                        <div class="text-xs text-slate-500">Phương pháp giảng dạy Tiếng Anh chuẩn quốc tế cho người nước ngoài.</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+                                        <i class="fa-solid fa-chart-line"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-slate-900">Kinh nghiệm Ôn thi Lớp 9 (2025)</div>
+                                        <div class="text-xs text-slate-500">Học sinh đạt kết quả ấn tượng từ <strong class="text-brand-600">7.5 đến 9.5 điểm</strong> môn Tiếng Anh.</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-slate-900">Ưu đãi khởi động Tháng 7</div>
+                                        <div class="text-xs text-slate-500">Học trải nghiệm & củng cố kiến thức hoàn toàn <strong>Miễn Phí</strong>.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                                <span><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Tứ Hiệp, Thanh Trì, Hà Nội</span>
+                                <span class="font-bold text-emeraldCustom-600">Lớp Offline</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: TEACHER PROFILE -->
+    <section id="about" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Giới Thiệu Giáo Viên</h2>
+                <p class="text-3xl font-extrabold text-slate-900 tracking-tight">Hồ Sơ Năng Lực & Thành Tích Dạy Học</p>
+                <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Profile Cards Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Academic Background -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:border-brand-200 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-university"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Học Vấn Xuất Sắc</h3>
+                    <p class="text-brand-600 font-semibold text-sm mb-4">Đại học Ngoại thương (FTU)</p>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emeraldCustom-500 mt-1"></i>
+                            <span>Sinh viên ngôi trường kinh tế - ngoại ngữ hàng đầu Việt Nam.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emeraldCustom-500 mt-1"></i>
+                            <span>Điểm thi THPT QG Môn Tiếng Anh 2024: <strong>9.4 điểm</strong>.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emeraldCustom-500 mt-1"></i>
+                            <span>Điểm trung bình học bạ 6 kỳ THPT Ngoại ngữ: <strong>9.2 điểm</strong>.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- IELTS & Certificate -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:border-brand-200 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-emeraldCustom-600 text-white flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Chứng Chỉ Quốc Tế</h3>
+                    <p class="text-emeraldCustom-600 font-semibold text-sm mb-4">IELTS 7.5 & TESOL Teacher</p>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emeraldCustom-500 mt-1"></i>
+                            <span>IELTS Overall <strong>7.5</strong> (Kỹ năng Listening: <strong>8.0</strong>, Speaking: <strong>8.0</strong>).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emeraldCustom-500 mt-1"></i>
+                            <span><strong>Chứng chỉ TESOL:</strong> Chứng chỉ quốc tế về sư phạm giảng dạy Tiếng Anh chuẩn mực.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emeraldCustom-500 mt-1"></i>
+                            <span>Phương pháp truyền đạt dễ hiểu, gần gũi với lứa tuổi THCS.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Teaching Experience -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:border-brand-200 hover:shadow-xl transition-all group md:col-span-2 lg:col-span-1">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Kết Quả Học Sinh</h3>
+                    <p class="text-indigo-600 font-semibold text-sm mb-4">Kinh Nghiệm Ôn Thi Lớp 9</p>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        Trực tiếp hướng dẫn và luyện thi cho các em học sinh lớp 9 trong năm 2025 với phương pháp bám sát cấu trúc đề thi.
+                    </p>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200">
+                        <div class="text-xs text-slate-500 font-medium">Kết quả học sinh khóa 2025:</div>
+                        <div class="text-2xl font-black text-brand-600 mt-1">7.5 – 9.5 Điểm</div>
+                        <div class="text-xs text-emeraldCustom-600 font-semibold mt-0.5">Môn Tiếng Anh Chuyển Cấp</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: COURSE OBJECTIVES & CONTENT -->
+    <section id="course" class="py-20 bg-slate-50 relative border-t border-b border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-emeraldCustom-600 uppercase tracking-widest mb-2">Lộ Trình Học Tập</h2>
+                <p class="text-3xl font-extrabold text-slate-900 tracking-tight">Mục Tiêu & Nội Dung Khóa Học Lớp 8</p>
+                <div class="w-16 h-1 bg-emeraldCustom-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                
+                <!-- Left Column: Course Objectives -->
+                <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-bullseye text-lg"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Mục Tiêu Khóa Học</h3>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-1">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base mb-1">Củng cố Ngữ pháp THCS</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Giúp học sinh nắm chắc từ ngữ pháp cơ bản đến nâng cao trong chương trình Tiếng Anh THCS, loại bỏ nỗi sợ ngữ pháp.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-1">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base mb-1">Ôn lại Kiến thức Lớp 7</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Rà soát và bù đắp các lỗ hổng kiến thức chương trình SGK Lớp 7, tạo đà bứt phá sẵn sàng cho năm học mới Lớp 8.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-1">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base mb-1">Phát triển Kỹ năng Toàn diện</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">Tăng cường vốn từ vựng phong phú, rèn luyện kỹ năng đặt câu chuẩn ngữ pháp và nâng cao khả năng Đọc - Hiểu ngắn.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Curriculum Details -->
+                <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-emeraldCustom-100 text-emeraldCustom-600 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-book-open text-lg"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Nội Dung Giảng Dạy</h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                            <div class="flex items-center gap-3 font-bold text-slate-900 text-base mb-1">
+                                <i class="fa-solid fa-check-circle text-emeraldCustom-500"></i>
+                                <span>1. Chuyên đề Ngữ Pháp Lớp 8</span>
+                            </div>
+                            <p class="text-sm text-slate-600 pl-7">Bao quát toàn bộ các thì (Tenses), câu so sánh, câu điều kiện, mệnh đề quan hệ và các cấu trúc trọng tâm SGK Lớp 8.</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                            <div class="flex items-center gap-3 font-bold text-slate-900 text-base mb-1">
+                                <i class="fa-solid fa-check-circle text-emeraldCustom-500"></i>
+                                <span>2. Từ Vựng Theo Chủ Đề</span>
+                            </div>
+                            <p class="text-sm text-slate-600 pl-7">Mở rộng vốn từ vựng đi kèm theo từng bài học SGK, hỗ trợ việc ghi nhớ tự nhiên và ứng dụng thực tế.</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                            <div class="flex items-center gap-3 font-bold text-slate-900 text-base mb-1">
+                                <i class="fa-solid fa-check-circle text-emeraldCustom-500"></i>
+                                <span>3. Bài Tập Viết & Đọc - Hiểu</span>
+                            </div>
+                            <p class="text-sm text-slate-600 pl-7">Thực hành viết câu chuẩn ngữ pháp, làm quen với dạng bài viết lại câu và các đoạn văn Đọc - Hiểu ngắn chuẩn cấu trúc thi.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: LOCATION, SCHEDULE & TUITION -->
+    <section id="schedule" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Thông Tin Lớp Học</h2>
+                <p class="text-3xl font-extrabold text-slate-900 tracking-tight">Hình Thức, Thời Gian & Học Phí</p>
+                <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- CARD 1: LOCATION & TIME SCHEDULE -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute top-0 right-0 bg-emeraldCustom-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-2xl">
+                        OFFLINE
+                    </div>
+
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl font-bold mb-6">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Hình Thức & Lịch Học</h3>
+
+                        <div class="space-y-4 text-sm text-slate-700">
+                            
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-location-dot text-red-500 text-base mt-1"></i>
+                                <div>
+                                    <strong class="text-slate-900">Địa điểm học:</strong>
+                                    <p class="text-slate-600">Offline tại nhà riêng: <span class="font-semibold text-slate-900">Số 8 Ngõ Đoàn Kết, Thanh Trì, Tứ Hiệp, Hà Nội</span>.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-clock text-brand-600 text-base mt-1"></i>
+                                <div>
+                                    <strong class="text-slate-900">Thời lượng:</strong> 2 buổi / tuần.
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-white border border-slate-200 space-y-2">
+                                <div class="flex items-center gap-2 font-bold text-slate-900">
+                                    <i class="fa-solid fa-calendar-check text-emeraldCustom-600"></i>
+                                    <span>Lịch cố định Buổi 1:</span>
+                                </div>
+                                <p class="text-brand-700 font-extrabold text-base pl-6">Thứ 7 hàng tuần (từ 9h00 – 10h00)</p>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-white border border-slate-200 space-y-2">
+                                <div class="flex items-center gap-2 font-bold text-slate-900">
+                                    <i class="fa-solid fa-calendar-plus text-brand-600"></i>
+                                    <span>Thống nhất Buổi 2:</span>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed pl-6">
+                                    Phụ huynh vui lòng chọn khung giờ rảnh trong form Google Sheet. Cô Tiên sẽ tổng hợp và chọn buổi cố định thứ 2 phù hợp nhất với đa số học sinh.
+                                </p>
+                            </div>
+
+                            <!-- Promo highlight -->
+                            <div class="p-4 rounded-2xl bg-emeraldCustom-50 border border-emeraldCustom-200 text-emeraldCustom-800 text-xs font-bold flex items-center gap-3">
+                                <i class="fa-solid fa-gift text-2xl text-emeraldCustom-600"></i>
+                                <div>
+                                    THÁNG 7 / 2025: MIỄN PHÍ HOÀN TOÀN
+                                    <div class="font-normal text-[11px] text-emeraldCustom-700">Dự kiến duy trì lịch học sang tháng 8 trừ khi có điều chỉnh chung.</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-200">
+                        <button onclick="openModal()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm transition-colors text-center block">
+                            Đăng Ký Chọn Lịch Rảnh Ngay
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- CARD 2: TUITION & BANK PAYMENT -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-emeraldCustom-100 text-emeraldCustom-600 flex items-center justify-center text-xl font-bold mb-6">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Học Phí & Thanh Toán</h3>
+
+                        <!-- Tuition rate -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 mb-6">
+                            <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Mức Học Phí (Áp dụng từ Tháng 8)</div>
+                            <div class="flex items-baseline gap-2 mt-2">
+                                <span class="text-4xl font-black text-brand-600">70.000đ</span>
+                                <span class="text-slate-500 font-semibold text-sm">/ học sinh / buổi</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-2 flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-info text-brand-500"></i>
+                                Hình thức thanh toán: Tổng hợp và thanh toán vào <strong>cuối mỗi tháng</strong>.
+                            </p>
+                        </div>
+
+                        <!-- Bank Transfer Card -->
+                        <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white p-6 rounded-2xl shadow-lg relative overflow-hidden">
+                            <!-- Bank logo badge -->
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold tracking-widest text-indigo-300 uppercase">Thông tin chuyển khoản</span>
+                                <span class="px-2.5 py-1 rounded bg-indigo-500/30 text-indigo-200 font-extrabold text-xs">TPBANK</span>
+                            </div>
+
+                            <div class="text-xs text-slate-400 mb-1">Ngân hàng Tienphong Bank (TPBank)</div>
+                            
+                            <!-- Account Number & Copy Button -->
+                            <div class="flex items-center justify-between bg-white/10 p-3 rounded-xl backdrop-blur-sm my-3 border border-white/10">
+                                <div>
+                                    <div class="text-[10px] text-indigo-200 uppercase font-semibold">Số tài khoản</div>
+                                    <div class="text-2xl font-mono font-bold tracking-wider text-white" id="stkValue">0777234733</div>
+                                </div>
+                                <button onclick="copySTK()" class="px-3 py-2 bg-emeraldCustom-500 hover:bg-emeraldCustom-600 text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1.5 active:scale-95 shadow-md">
+                                    <i class="fa-solid fa-copy"></i>
+                                    <span id="copyBtnText">Sao chép</span>
+                                </button>
+                            </div>
+
+                            <div class="text-xs text-slate-400">Chủ tài khoản</div>
+                            <div class="text-base font-bold text-indigo-100 tracking-wide">LE THUY TIEN</div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-200 text-xs text-slate-500 text-center">
+                        <i class="fa-solid fa-shield-halved text-emeraldCustom-600 mr-1"></i>
+                        Minh bạch học phí • Đảm bảo chất lượng từng buổi học
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: RULES & COMMITMENT -->
+    <section id="rules" class="py-20 bg-slate-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-emeraldCustom-400 uppercase tracking-widest mb-2">Đảm Bảo Chất Lượng</h2>
+                <p class="text-3xl font-extrabold text-white tracking-tight">Cam Kết & Nguyên Tắc Lớp Học</p>
+                <p class="text-sm text-slate-400 mt-2">Áp dụng ngay từ buổi đầu tiên nhằm đem lại môi trường học tập kỷ luật và hiệu quả nhất.</p>
+                <div class="w-16 h-1 bg-emeraldCustom-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Rule 1 -->
+                <div class="bg-slate-800/80 p-8 rounded-3xl border border-slate-700/80 relative hover:border-emeraldCustom-500 transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-emeraldCustom-500/20 text-emeraldCustom-400 flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <span class="text-xs font-bold text-emeraldCustom-400 uppercase tracking-wider block mb-1">Nguyên tắc 01</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Đến Đúng Giờ</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Học sinh cần đi học đúng giờ, trường hợp bất khả thi cho phép muộn tối đa 10 phút để giữ nếp học nghiêm túc cho cả lớp.
+                    </p>
+                </div>
+
+                <!-- Rule 2 -->
+                <div class="bg-slate-800/80 p-8 rounded-3xl border border-slate-700/80 relative hover:border-emeraldCustom-500 transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-pen-ruler"></i>
+                    </div>
+                    <span class="text-xs font-bold text-brand-400 uppercase tracking-wider block mb-1">Nguyên tắc 02</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Bài Tập Về Nhà</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Hoàn thành đầy đủ 100% bài tập được giao trước giờ học để củng cố ngay lượng kiến thức đã tiếp thu trên lớp.
+                    </p>
+                </div>
+
+                <!-- Rule 3 -->
+                <div class="bg-slate-800/80 p-8 rounded-3xl border border-slate-700/80 relative hover:border-emeraldCustom-500 transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">Nguyên tắc 03</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Tích Cực Học Tập</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Ghi chép bài đầy đủ, cẩn thận và hăng hái phát biểu xây dựng bài trong suốt thời gian diễn ra buổi học.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 5: CALL TO ACTION & REGISTRATION -->
+    <section id="contact" class="py-20 bg-white relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-indigo-900 rounded-3xl p-8 sm:p-12 text-white text-center relative overflow-hidden shadow-2xl">
+                
+                <!-- Background ambient design -->
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-emeraldCustom-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-20 -top-20 w-80 h-80 bg-brand-500/30 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+                    
+                    <span class="inline-block px-4 py-1.5 rounded-full bg-emeraldCustom-500/20 border border-emeraldCustom-400/40 text-emeraldCustom-300 font-bold text-xs">
+                        🎁 Đăng Ký Miễn Phí Tháng 7
+                    </span>
+
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                        Sẵn Sàng Đồng Hành Cùng Các Em Học Sinh Lớp 8
+                    </h2>
+
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Kính mời Bố Mẹ điền biểu mẫu Google Sheet để xác nhận tham gia khóa học cũng như chọn lịch học rảnh cho con. Cô Thủy Tiên rất mong được gặp các em trong hè này!
+                    </p>
+
+                    <!-- Large Register Buttons -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <button onclick="openModal()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-emeraldCustom-500 hover:bg-emeraldCustom-600 text-white font-extrabold text-base shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-file-pen text-lg"></i>
+                            <span>Mở Biểu Mẫu Đăng Ký Google Sheet</span>
+                        </button>
+
+                        <a href="tel:0777234733" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-base transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone text-emeraldCustom-400"></i>
+                            <span>0777 234 733</span>
+                        </a>
+                    </div>
+
+                    <p class="text-xs text-slate-400 pt-2">
+                        * Mọi thắc mắc phụ huynh có thể liên hệ trực tiếp qua Zalo hoặc Số điện thoại của cô.
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center font-bold text-sm">
+                    LT
+                </div>
+                <div>
+                    <div class="text-white font-bold text-sm">Cô Lê Thủy Tiên</div>
+                    <div class="text-xs text-slate-500">Khóa Học Ngữ Pháp Tiếng Anh Lớp 8</div>
+                </div>
+            </div>
+
+            <div class="text-xs text-slate-500 text-center md:text-right">
+                <p>&copy; 2025 Lê Thủy Tiên. All rights reserved.</p>
+                <p class="mt-1">Địa chỉ: Số 8 Ngõ Đoàn Kết, Thanh Trì, Tứ Hiệp, Hà Nội</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- REGISTRATION MODAL -->
+    <div id="registerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div class="bg-white w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl relative transform scale-95 transition-transform duration-300" id="modalContainer">
+            
+            <!-- Close button -->
+            <button onclick="closeModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl font-bold mx-auto mb-3">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900">Đăng Ký Khóa Học</h3>
+                <p class="text-xs text-slate-500 mt-1">Xác nhận tham gia & Lựa chọn lịch rảnh cho học sinh</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="p-4 rounded-2xl bg-emeraldCustom-50 border border-emeraldCustom-200 text-emeraldCustom-800 text-xs font-semibold">
+                    <i class="fa-solid fa-circle-check text-emeraldCustom-600 mr-1"></i>
+                    Tháng 7 MIỄN PHÍ hoàn toàn. Phụ huynh vui lòng nhấn vào nút bên dưới để mở liên kết Google Sheet chính thức của cô Thủy Tiên.
+                </div>
+
+                <a href="https://docs.google.com/spreadsheets" target="_blank" rel="noopener noreferrer" class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-center block shadow-lg shadow-brand-500/25 transition-all text-sm">
+                    <i class="fa-solid fa-external-link mr-2"></i> Đi Đến Form Google Sheet Đăng Ký
+                </a>
+
+                <div class="relative flex py-2 items-center">
+                    <div class="flex-grow border-t border-slate-200"></div>
+                    <span class="flex-shrink mx-4 text-xs font-semibold text-slate-400">HOẶC LIÊN HỆ TRỰC TIẾP</span>
+                    <div class="flex-grow border-t border-slate-200"></div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="tel:0777234733" class="py-3 px-4 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone text-emeraldCustom-600"></i> Gọi 0777 234 733
+                    </a>
+                    <a href="https://zalo.me/0777234733" target="_blank" rel="noopener noreferrer" class="py-3 px-4 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-comment text-brand-600"></i> Nhắn Zalo
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <button onclick="closeModal()" class="text-xs text-slate-400 hover:text-slate-600 font-semibold">
+                    Đóng cửa sổ này
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION FOR COPY STK -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 flex items-center gap-3 translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="w-7 h-7 rounded-full bg-emeraldCustom-500 text-white flex items-center justify-center font-bold text-xs">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <div class="font-bold text-xs" id="toastTitle">Đã sao chép!</div>
+            <div class="text-[11px] text-slate-400" id="toastMsg">Số tài khoản đã được lưu vào khay nhớ tạm.</div>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTop" onclick="scrollToTop()" class="fixed bottom-6 left-6 z-40 w-11 h-11 rounded-full bg-white text-slate-700 shadow-lg border border-slate-200 flex items-center justify-center text-sm opacity-0 pointer-events-none transition-all hover:bg-brand-600 hover:text-white">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- JAVASCRIPT INTERACTION LOGIC -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // Modal Open / Close Logic
+        const modal = document.getElementById('registerModal');
+        const modalContainer = document.getElementById('modalContainer');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContainer.classList.remove('scale-95');
+                modalContainer.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close Modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close Modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Copy STK Functionality
+        function copySTK() {
+            const stkText = document.getElementById('stkValue').innerText;
+            const copyBtnText = document.getElementById('copyBtnText');
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(stkText).then(showSuccessToast).catch(fallbackCopy);
+            } else {
+                fallbackCopy(stkText);
+            }
+
+            function fallbackCopy(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text || stkText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccessToast();
+                } catch (err) {
+                    showToast('Lỗi', 'Không thể sao chép tự động, vui lòng tự chép thủ công');
+                }
+                document.body.removeChild(textArea);
+            }
+
+            function showSuccessToast() {
+                copyBtnText.innerText = "Đã chép!";
+                showToast('Đã sao chép thành công!', 'STK: 0777234733 (TPBank - LE THUY TIEN)');
+                setTimeout(() => {
+                    copyBtnText.innerText = "Sao chép";
+                }, 2500);
+            }
+        }
+
+        // Toast Popup Trigger
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastMsg').innerText = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // Scroll to top functionality
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
